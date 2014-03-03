@@ -22,8 +22,25 @@ a {
 #card-list {
   background-color: #eee;
 }
-#card-list div {
+#card-list >div {
   width: 50%;
   padding: 1em;
   float: left;
+}
+#card-list ol li {
+  overflow: auto;
+  margin: 2px 0;
+  border-bottom: 1px solid #eee;
+}
+#card-list ol li span {
+  float: right;
+  font-size: 9pt;
+  text-transform: uppercase;
+  padding: 3px;
+  margin: 5px 0;
+  background-color: #555;
+  color: #fff;
+}
+#card-list ol li div {
+  padding: 3px;
 }
