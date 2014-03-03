@@ -9,5 +9,17 @@ var userSchema = new mongoose.Schema({
 
 mongoose.model("User", userSchema);
 
-console.log(global.dbURL);
+var cardSchema = new mongoose.Schema({
+
+	cardType : String,
+	text : String,
+	numAnswers : Number,
+	expansion : String
+
+});
+
+mongoose.model("Card", cardSchema);
+
+console.log("Connecting to: " + global.dbURL);
+
 mongoose.connect(global.dbURL);

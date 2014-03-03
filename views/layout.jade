@@ -1,7 +1,14 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+	head
+		title= title
+		link(rel='stylesheet', href='/stylesheets/style.css')
+	body
+		h1 Chromecast Against Humanity
+
+		ul#nav
+			li: a(href="/") Home
+			li: a(href="/users") Users
+			li: a(href="/cards") Cards
+
+		block content

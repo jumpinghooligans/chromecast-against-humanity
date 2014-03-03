@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+	h2 List of cards
+	#card-list
+		div
+			h3 Questions
+			ol
+				each question in questions
+					li #{question.text}
+		div
+			h3 Answers
+			ol
+				each answer in answers
+					li #{answer.text}
