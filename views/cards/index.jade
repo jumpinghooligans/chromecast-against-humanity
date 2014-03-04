@@ -2,10 +2,11 @@ extends ../layout
 
 block content
 	h2 List of cards
-	//- #example
-	//- 	div.card.question
-	//- 		.text #{response.example.text}
-	//- 		.expansion Deck: <strong>#{response.example.expansion}</strong>
+	#example
+		h3 Example Combo
+		div.card.question
+			.text!= response.example.text
+			.expansion Deck: <strong>#{response.example.expansion}</strong>
 	#card-list
 		div
 			h3 Questions

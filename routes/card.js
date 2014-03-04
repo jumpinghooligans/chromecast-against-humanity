@@ -17,8 +17,12 @@ exports.list = function(req, res) {
 	var complete = function() {
 		if(response.questions && response.answers) {
 
-			// response.example = response.questions[0];
-			// response.example.text = response.example.text.replace("_" , response.answers[0].text);
+			var example_question = JSON.parse(JSON.stringify(response.questions[0]));
+			var example_answer = response.answers[0];
+
+			example_question.text = example_question.text.replace("_", "<span>" + example_answer.text.substr(0, example_answer.text.length-1) + "</span>");
+
+			response.example = example_question;
 
 			res.render("cards", { response : response });
 		}

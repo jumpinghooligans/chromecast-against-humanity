@@ -45,6 +45,9 @@ a {
   height: 275px;
   overflow: auto;
 }
+.card .text span {
+  color: #f00;
+}
 .card .expansion {
   position: absolute;
   display: block;
