@@ -11,11 +11,11 @@ block content
 			h3 Questions
 			each question in response.questions
 				div.card.question
-					.text #{question.text}
+					.text!= question.text
 					.expansion Deck: <strong>#{question.expansion}</strong>
 		div
 			h3 Answers
 			each answer in response.answers
 				div.card.answer
-					.text #{answer.text}
+					.text!= answer.text
 					.expansion Deck: <strong>#{answer.expansion}</strong>
