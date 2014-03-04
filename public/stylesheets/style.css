@@ -27,20 +27,34 @@ a {
   padding: 1em;
   float: left;
 }
-#card-list ol li {
+#card-list .card {
+  position: relative;
   overflow: auto;
-  margin: 2px 0;
-  border-bottom: 1px solid #eee;
+  float: left;
+  margin: 10px;
+  width: 200px;
+  height: 300px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #ccc;
 }
-#card-list ol li span {
-  float: right;
-  font-size: 9pt;
-  text-transform: uppercase;
-  padding: 3px;
-  margin: 5px 0;
-  background-color: #555;
+#card-list .card .text {
+  font-size: 200%;
+  padding: 0.5em;
+  height: 275px;
+  overflow: scroll;
+}
+#card-list .card .expansion {
+  position: absolute;
+  display: block;
+  text-align: center;
+  bottom: 5px;
+  width: 100%;
+}
+#card-list .card.question {
+  background-color: #000;
   color: #fff;
 }
-#card-list ol li div {
-  padding: 3px;
+#card-list .card.answer {
+  background-color: #fff;
+  color: #000;
 }

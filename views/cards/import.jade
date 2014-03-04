@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+	h2 Import Cards
+
+	if response.post
+		p= response.message
+	else
+		p Found #{response.cards.length} cards in card_list.js
+
+		form(method="POST")
+			input(type="submit", value="Import into database")

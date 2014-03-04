@@ -12,7 +12,7 @@ mongoose.model("User", userSchema);
 var cardSchema = new mongoose.Schema({
 
 	cardType : String,
-	text : String,
+	text : { type : String, 'unique' : true },
 	numAnswers : Number,
 	expansion : String
 

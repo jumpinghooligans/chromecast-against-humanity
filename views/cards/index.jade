@@ -5,16 +5,15 @@ block content
 	#card-list
 		div
 			h3 Questions
-			ol
-				each question in questions
-					li
-						span #{question.expansion}
-						div #{question.text}
-
+			each question in response.questions
+				div
+					div.card.question
+						.text #{question.text}
+						.expansion Deck: <strong>#{question.expansion}</strong>
 		div
 			h3 Answers
-			ol
-				each answer in answers
-					li
-						span #{answer.expansion}
-						div #{answer.text}
+			each answer in response.answers
+				div
+					div.card.answer
+						.text #{answer.text}
+						.expansion Deck: <strong>#{answer.expansion}</strong>

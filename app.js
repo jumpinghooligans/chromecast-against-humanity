@@ -5,15 +5,16 @@
 
 var express = require('express');
 
+global.dbURL = process.env.MONGOHQ_URL || "mongodb://localhost/cards-against";
+var db = require('./db');
+
 var routes = require('./routes');
 var user = require('./routes/user');
 var card = require('./routes/card');
+var game = require('./routes/game');
 
 var http = require('http');
 var path = require('path');
-
-global.dbURL = process.env.MONGOHQ_URL || "mongodb://localhost/cards-against";
-var db = require('./db');
 
 var app = express();
 
@@ -41,6 +42,10 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 
 app.get('/cards', card.list);
+app.get('/cards/import', card.import);
+app.post('/cards/import', card.import);
+
+app.get('/game', game.list);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
