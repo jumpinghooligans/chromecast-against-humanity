@@ -7,16 +7,16 @@ exports.list = function(req, res) {
 
 	Card.find({ cardType : "A" }, function(err, cards) {
 		response.answers = cards;
-		render();
+		complete();
 	});
 	Card.find({ cardType : "Q" }, function(err, cards) {
 		response.questions = cards;
-		render();
+		complete();
 	});
 
-	var render = function() {
+	var complete = function() {
 		if(response.questions && response.answers) {
-			
+
 			// response.example = response.questions[0];
 			// response.example.text = response.example.text.replace("_" , response.answers[0].text);
 
@@ -35,18 +35,25 @@ exports.import = function (req, res) {
 	if(response.post) {
 		var Card = mongoose.model("Card");
 
+		var errors = [];
 		for(var i=0; i<response.cards.length; i++) {
-			var c = new Card(response.cards[i]);
-			c.save(function(err) {
-				response.message += err + "<br />";
-
-				if(i == response.cards.length){
-					res.render("cards/import", { response : response });
-				}
-			});
+			(function (i) {
+				var c = new Card(response.cards[i]);
+				c.save(function(err) {
+					errors.push(err);
+					complete(i);
+				});
+			})(i);
 		}
 	} else {
 		res.render("cards/import", { response : response });
 	}
 
+	var complete = function(i) {
+		console.log('complete ' + i + ' vs ' + response.cards.length);
+		if(i==response.cards.length-1) {
+			response.message = errors.join("<br />");
+			res.render("cards/import", { response : response });
+		}
+	}
 }
