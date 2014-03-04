@@ -15,8 +15,13 @@ exports.list = function(req, res) {
 	});
 
 	var render = function() {
-		if(response.questions && response.answers)
+		if(response.questions && response.answers) {
+			
+			// response.example = response.questions[0];
+			// response.example.text = response.example.text.replace("_" , response.answers[0].text);
+
 			res.render("cards", { response : response });
+		}
 	}
 }
 

@@ -27,34 +27,36 @@ a {
   padding: 1em;
   float: left;
 }
-#card-list .card {
+#example {
+  text-align: center;
+}
+.card {
   position: relative;
-  overflow: auto;
-  float: left;
+  display: inline-block;
   margin: 10px;
   width: 200px;
   height: 300px;
   border-radius: 10px;
-  box-shadow: 0 0 15px #ccc;
+  box-shadow: 0 0 15px #555;
 }
-#card-list .card .text {
+.card .text {
   font-size: 200%;
   padding: 0.5em;
   height: 275px;
   overflow: scroll;
 }
-#card-list .card .expansion {
+.card .expansion {
   position: absolute;
   display: block;
   text-align: center;
   bottom: 5px;
   width: 100%;
 }
-#card-list .card.question {
+.card.question {
   background-color: #000;
   color: #fff;
 }
-#card-list .card.answer {
+.card.answer {
   background-color: #fff;
   color: #000;
 }

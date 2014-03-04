@@ -2,18 +2,20 @@ extends ../layout
 
 block content
 	h2 List of cards
+	//- #example
+	//- 	div.card.question
+	//- 		.text #{response.example.text}
+	//- 		.expansion Deck: <strong>#{response.example.expansion}</strong>
 	#card-list
 		div
 			h3 Questions
 			each question in response.questions
-				div
-					div.card.question
-						.text #{question.text}
-						.expansion Deck: <strong>#{question.expansion}</strong>
+				div.card.question
+					.text #{question.text}
+					.expansion Deck: <strong>#{question.expansion}</strong>
 		div
 			h3 Answers
 			each answer in response.answers
-				div
-					div.card.answer
-						.text #{answer.text}
-						.expansion Deck: <strong>#{answer.expansion}</strong>
+				div.card.answer
+					.text #{answer.text}
+					.expansion Deck: <strong>#{answer.expansion}</strong>
