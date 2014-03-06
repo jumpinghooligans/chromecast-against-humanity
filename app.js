@@ -58,7 +58,8 @@ var server = http.createServer(app).listen(app.get('port'), function(){
 
 io.listen(server).on("connection", function (socket) {
 	//console.log("got a connection from " + util.inspect(socket));
-	socket.on('message', function(data) {
+	socket.on('ua-message', function(data) {
 		console.log("receiver userAgent: " + data.userAgent);
+		socket.emit('ua-message', data);
 	});
 })

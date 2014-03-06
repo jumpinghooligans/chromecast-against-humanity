@@ -1,4 +1,6 @@
 var socket = io.connect('http://chromecast-against-humanity.herokuapp.com/');
-//console.log(navigator.userAgent);
 
-socket.emit('message', { userAgent : navigator.userAgent });
+socket.emit('ua-message', { userAgent : navigator.userAgent });
+socket.on('ua-message', function(data) {
+	$("#message").text(JSON.stringify(data));
+});
