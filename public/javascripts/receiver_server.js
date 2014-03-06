@@ -5,8 +5,4 @@ $(document).ready(function() {
 	socket.on('ua-message', function(data) {
 		$("#message").text(JSON.stringify(data));
 	});
-
-	function sendCCMsg(msg) {
-		alert(msg);
-	}
 });
