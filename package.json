@@ -1,6 +1,6 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
+  "name": "chromecast-against-humanity",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "start": "node app.js"
@@ -11,5 +11,24 @@
     "stylus": "*",
     "mongoose": "*",
     "socket.io": "*"
-  }
+  },
+  "description": "chromecast-cards-against ========================",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jumpinghooligans/chromecast-against-humanity.git"
+  },
+  "keywords": [
+    "chromecast",
+    "cards",
+    "against",
+    "humanity"
+  ],
+  "author": "Ryan Kortmann",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jumpinghooligans/chromecast-against-humanity/issues"
+  },
+  "homepage": "https://github.com/jumpinghooligans/chromecast-against-humanity"
 }
