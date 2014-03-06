@@ -4,9 +4,9 @@ block content
 	h2 List of cards
 	#example
 		h3 Example Combo
-		div.card.question
-			.text!= response.example.text
-			.expansion Deck: <strong>#{response.example.expansion}</strong>
+		each example in response.examples
+			div.card.question
+				.text!= example.text
 	#card-list
 		div
 			h3 Questions

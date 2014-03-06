@@ -40,7 +40,7 @@ a {
   box-shadow: 0 0 15px #555;
 }
 .card .text {
-  font-size: 175%;
+  font-size: 14pt;
   padding: 0.5em;
   height: 275px;
   overflow: auto;

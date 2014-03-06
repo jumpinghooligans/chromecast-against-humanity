@@ -14,15 +14,29 @@ exports.list = function(req, res) {
 		complete();
 	});
 
+	//for example combos
+	var examples = [];
+	response.examples = [];
+	Card.find({ cardType : "Q", numAnswers : 1 }, function(err, cards) {
+		examples = cards;
+		complete();
+	});
+
 	var complete = function() {
-		if(response.questions && response.answers) {
+		if(response.questions && response.answers && examples.length>0) {
 
-			var example_question = JSON.parse(JSON.stringify(response.questions[0]));
-			var example_answer = response.answers[0];
+			for(var i=0; i<5; i++) {
+				var example_question = examples[Math.floor(Math.random()*examples.length)];
+				var example_answer = response.answers[Math.floor(Math.random()*response.answers.length)];
 
-			example_question.text = example_question.text.replace("_", "<span>" + example_answer.text.substr(0, example_answer.text.length-1) + "</span>");
+				if(example_question.text.indexOf("_") == -1) {
+					example_question.text += '<br /><br /><span>' + example_answer.text + "</span>";
+				} else {
+					example_question.text = example_question.text.replace("_", "<span>" + example_answer.text.replace(/[!.?]/, "") + "</span>");
+				}
 
-			response.example = example_question;
+				response.examples.push(example_question);
+			}
 
 			res.render("cards", { response : response });
 		}
