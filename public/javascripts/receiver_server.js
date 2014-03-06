@@ -4,3 +4,7 @@ socket.emit('ua-message', { userAgent : navigator.userAgent });
 socket.on('ua-message', function(data) {
 	$("#message").text(JSON.stringify(data));
 });
+
+function sendCCMsg(msg) {
+	alert(msg);
+}
