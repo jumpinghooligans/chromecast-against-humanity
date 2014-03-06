@@ -26,8 +26,10 @@ exports.list = function(req, res) {
 		if(response.questions && response.answers && examples.length>0) {
 
 			for(var i=0; i<5; i++) {
-				var example_question = examples[Math.floor(Math.random()*examples.length)];
-				var example_answer = response.answers[Math.floor(Math.random()*response.answers.length)];
+				var example_question = JSON.parse(JSON.stringify(examples[Math.floor(Math.random()*examples.length)]));
+				var example_answer = JSON.parse(JSON.stringify(response.answers[Math.floor(Math.random()*response.answers.length)]));
+
+				console.log("Merging: Q[" + example_question.text + "] with A[" + example_answer.text + "]")
 
 				if(example_question.text.indexOf("_") == -1) {
 					example_question.text += '<br /><br /><span>' + example_answer.text + "</span>";
