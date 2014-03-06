@@ -1,10 +1,12 @@
-var socket = io.connect('http://chromecast-against-humanity.herokuapp.com/');
+$(document).ready(function() {
+	var socket = io.connect('http://chromecast-against-humanity.herokuapp.com/');
 
-socket.emit('ua-message', { userAgent : navigator.userAgent });
-socket.on('ua-message', function(data) {
-	$("#message").text(JSON.stringify(data));
+	socket.emit('ua-message', { userAgent : navigator.userAgent });
+	socket.on('ua-message', function(data) {
+		$("#message").text(JSON.stringify(data));
+	});
+
+	function sendCCMsg(msg) {
+		alert(msg);
+	}
 });
-
-function sendCCMsg(msg) {
-	alert(msg);
-}
