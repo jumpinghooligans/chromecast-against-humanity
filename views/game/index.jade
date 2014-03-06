@@ -2,3 +2,10 @@ extends ../layout
 
 block content
 	h2 Game
+
+	div
+		input(type='button', value='Test Connection', onclick='JavaScript:update()')
+	#debugmessage
+
+	script(type='text/javascript', src='http://www.gstatic.com/cv/js/sender/v1/cast_sender.js')
+	script(type='text/javascript', src='javascripts/sender.js')

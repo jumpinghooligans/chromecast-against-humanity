@@ -12,9 +12,12 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var card = require('./routes/card');
 var game = require('./routes/game');
+var receiver = require('./routes/receiver');
 
 var http = require('http');
 var path = require('path');
+var io = require('socket.io');
+var util = require('util');
 
 var app = express();
 
@@ -47,6 +50,15 @@ app.post('/cards/import', card.import);
 
 app.get('/game', game.list);
 
-http.createServer(app).listen(app.get('port'), function(){
+app.get('/receiver', receiver.title);
+
+var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+io.listen(server).on("connection", function (socket) {
+	//console.log("got a connection from " + util.inspect(socket));
+	socket.on('message', function(data) {
+		console.log("receiver userAgent: " + data.userAgent);
+	});
+})
