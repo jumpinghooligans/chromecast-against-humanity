@@ -59,8 +59,7 @@ var server = http.createServer(app).listen(app.get('port'), function(){
 io.listen(server).on("connection", function (socket) {
 	//console.log("got a connection from " + util.inspect(socket));
 	socket.on('receiver-message', function(data) {
-		console.log("Initialized user agent: " + data.data);
-		socket.emit('receiver-message', data);
+		console.log("Received recever message: " + JSON.stringify(data));
 	});
 
 	socket.on('sender-message', function(data) {
