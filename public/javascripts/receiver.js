@@ -49,7 +49,7 @@ window.onload = function() {
 
 // utility function to display the text message in the input field
 function displayText(text) {
-    console.log(text);
+    socket.emit("sender-message", { data : "received text: " + text});
     document.getElementById("message").innerHTML=text;
     window.castReceiverManager.setApplicationState(text);
 };
