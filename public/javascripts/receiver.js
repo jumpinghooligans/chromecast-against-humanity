@@ -37,10 +37,10 @@ window.onload = function() {
         console.log('Message [' + event.senderId + ']: ' + event.data);
         // display the message from the sender
         var data = JSON.parse(event.data);
-        if(event.data.action == "updateText") {
+        if(data.action == "updateText") {
             displayText(event.data.text);
         }
-        if(event.data.action == "newCards") {
+        if(data.action == "newCards") {
             getExamples(5);
         }
 
