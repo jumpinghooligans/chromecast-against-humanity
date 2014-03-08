@@ -66,5 +66,7 @@ io.listen(server).on("connection", function (socket) {
 
 	socket.on('sender-message', function(data) {
 		console.log("Received sender message: " + JSON.stringify(data));
+
+		socket.emit('server-message', data);
 	});
 })

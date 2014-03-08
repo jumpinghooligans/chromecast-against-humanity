@@ -134,7 +134,7 @@ function update() {
 }
 
 function newCards() {
-    sendMessage({ action : "newCards" });
+    //sendMessage({ action : "newCards" });
 }
 
 /**

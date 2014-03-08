@@ -4,6 +4,11 @@ $(document).ready(function() {
 	socket = io.connect('http://chromecast-against-humanity.herokuapp.com/');
 
 	socket.emit('receiver-message', { data : navigator.userAgent });
+	socket.on('server-message', function(data) {
+		if(data.action == "exampleCards") {
+			getExamples(5);
+		}
+	});
 });
 
 function updateServer(text) {
