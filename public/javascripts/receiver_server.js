@@ -1,5 +1,7 @@
+var socket;
+
 $(document).ready(function() {
-	var socket = io.connect('http://chromecast-against-humanity.herokuapp.com/');
+	socket = io.connect('http://chromecast-against-humanity.herokuapp.com/');
 
 	socket.emit('sender-message', { data : navigator.userAgent });
 });
