@@ -56,6 +56,7 @@ window.onload = function() {
 // utility function to display the text message in the input field
 function displayText(text) {
     updateServer(text);
+    console.log("displayText: " + text);
     document.getElementById("message").innerHTML=text;
     window.castReceiverManager.setApplicationState(text);
 };
