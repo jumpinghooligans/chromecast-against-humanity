@@ -51,6 +51,8 @@ app.post('/cards/import', card.import);
 app.get('/game', game.list);
 
 app.get('/receiver', receiver.title);
+app.get('/receiver/examples', receiver.examples);
+app.get('/receiver/examples/:count', receiver.examples);
 
 var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 exports.list = function(req, res) {
+
 	var response = {};
 
 	var Card = mongoose.model("Card");

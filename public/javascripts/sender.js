@@ -130,7 +130,11 @@ function appendMessage(message) {
  * utility function to handle text typed in by user in the input field
  */
 function update() {
-    sendMessage(document.getElementById("input").value);
+    sendMessage({ action : "updateText", text : document.getElementById("input").value });
+}
+
+function newCards() {
+    sendMessage({ action : "newCards" });
 }
 
 /**
