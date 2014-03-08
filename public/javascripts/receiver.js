@@ -36,7 +36,7 @@ window.onload = function() {
     window.messageBus.onMessage = function(event) {
         console.log('Message [' + event.senderId + ']: ' + event.data);
         // display the message from the sender
-        console.log(event.data.action);
+        console.log(typeof event.data);
         if(event.data.action == "updateText") {
             displayText(event.data.text);
         }
