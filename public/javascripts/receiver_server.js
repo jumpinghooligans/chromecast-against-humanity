@@ -5,6 +5,8 @@ $(document).ready(function() {
 
 	socket.emit('receiver-message', { data : navigator.userAgent });
 	socket.on('server-message', function(data) {
+		console.log("received server message");
+		console.log(data);
 		if(data.action == "exampleCards") {
 			getExamples(5);
 		}
