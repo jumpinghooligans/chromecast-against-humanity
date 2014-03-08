@@ -10,7 +10,7 @@ function updateServer(text) {
 	socket.emit('receiver-message', { data : text });
 }
 
-function getExampels(count) {
+function getExamples(count) {
 	$("#examples").html("");
 
 	$.get("/receiver/examples/" + count, function(data) {
