@@ -38,7 +38,7 @@ window.onload = function() {
         // display the message from the sender
         var data = JSON.parse(event.data);
         if(data.action == "updateText") {
-            displayText(event.data.text);
+            displayText(data.text);
         }
         if(data.action == "newCards") {
             getExamples(5);
