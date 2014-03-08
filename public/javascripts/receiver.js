@@ -30,7 +30,7 @@ window.onload = function() {
     };
 
     // create a CastMessageBus to handle messages for a custom namespace
-    window.messageBus = window.castReceiverManager.getCastMessageBus('urn:x-cast:com.google.cast.sample.helloworld');
+    window.messageBus = window.castReceiverManager.getCastMessageBus('urn:x-cast:com.chromecast.againsthumanity');
 
     // handler for the CastMessageBus message event
     window.messageBus.onMessage = function(event) {

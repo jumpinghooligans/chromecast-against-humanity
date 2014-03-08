@@ -1,8 +1,8 @@
 var applicationID = 'E769D711';
-var namespace = 'urn:x-cast:com.google.cast.sample.helloworld';
+var namespace = 'urn:x-cast:com.chromecast.againsthumanity';
 var session = null;
 
-var socket = io.connect('http://chromecast-against-humanity.herokuapp.com/');
+//var socket = io.connect('http://chromecast-against-humanity.herokuapp.com/');
 
 /**
  * Call initialization for Cast
