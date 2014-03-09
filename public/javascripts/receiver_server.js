@@ -16,8 +16,6 @@ $(document).ready(function() {
 			getExamples(5);
 		}
 	});
-
-	getExamples(5);
 });
 
 function updateServer(text) {
