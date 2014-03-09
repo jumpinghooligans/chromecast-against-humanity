@@ -27,12 +27,13 @@ function getExamples(count) {
 
 	$.get("/receiver/examples/" + count, function(data) {
 		for(var i=0; i<count; i++) {
-			createCard(data[i].text, "");
+			createCard(data[i].text, "", i);
 		}
 	});
 }
 
-function createCard(text, expansion) {
+function createCard(text, expansion, index) {
+	var fadeTime = 500;
 	var card = $("<div></div>");
 	$(card).addClass("card question");
 
@@ -42,5 +43,11 @@ function createCard(text, expansion) {
 
 	$(card).append(textEle);
 
+	$(card).css("display", "none");
 	$("#examples").append(card);
+
+
+	setTimeout(function() {
+		$(card).fadeIn();
+	}, index * fadeTime);
 }
