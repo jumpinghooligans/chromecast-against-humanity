@@ -16,6 +16,8 @@ $(document).ready(function() {
 			getExamples(5);
 		}
 	});
+
+	getExamples(5);
 });
 
 function updateServer(text) {
@@ -33,7 +35,7 @@ function getExamples(count) {
 }
 
 function createCard(text, expansion, index) {
-	var fadeTime = 500;
+	var fadeTime = 250;
 	var card = $("<div></div>");
 	$(card).addClass("card question");
 
@@ -43,11 +45,15 @@ function createCard(text, expansion, index) {
 
 	$(card).append(textEle);
 
-	$(card).css("display", "none");
+	$(card).css("opacity", "0");
+	$(card).css("bottom", "-100px");
 	$("#examples").append(card);
 
 
 	setTimeout(function() {
-		$(card).fadeIn();
+		$(card).animate({
+			opacity : 1,
+			bottom : 0
+		}, 500);
 	}, index * fadeTime);
 }

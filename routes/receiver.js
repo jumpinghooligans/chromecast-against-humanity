@@ -5,7 +5,6 @@ exports.title = function(req, res){
 };
 
 exports.examples = function (req, res) {
-
 	var count = (req.params.count) ? req.params.count : 5;
 
 	var Card = mongoose.model("Card");
@@ -27,8 +26,10 @@ exports.examples = function (req, res) {
 		if((questions.length > 0) && (answers.length > 0)) {
 			console.log(answers);
 			var examples = [];
+
+			var example_question_base = questions[Math.floor(Math.random()*questions.length)];
 			for(var i=0; i<count; i++) {
-				var example_question = JSON.parse(JSON.stringify(questions[Math.floor(Math.random()*questions.length)]));
+				var example_question = JSON.parse(JSON.stringify(example_question_base));
 				var example_answer = JSON.parse(JSON.stringify(answers[Math.floor(Math.random()*answers.length)]));
 
 				console.log("Merging: Q[" + example_question.text + "] with A[" + example_answer.text + "]")
