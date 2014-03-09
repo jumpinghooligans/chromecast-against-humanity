@@ -15,6 +15,9 @@ $(document).ready(function() {
 		if(data.action == "exampleCards") {
 			getExamples(5);
 		}
+		if(data.action == "updateText") {
+			updateText(data.text);
+		}
 	});
 });
 
@@ -54,4 +57,8 @@ function createCard(text, expansion, index) {
 			bottom : 0
 		}, 500);
 	}, index * fadeTime);
+}
+
+function updateText(text) {
+	$("#message").text(text);
 }
