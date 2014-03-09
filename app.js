@@ -91,7 +91,7 @@ io.listen(server).on("connection", function (socket) {
 		var chromecasts = games[data.player_info.game].chromecasts;
 
 		for(chromecast in chromecasts) {
-			console.log(chromecasts[i]);
+			console.log(chromecast  + " : " + chromecasts[chromecast]);
 		}
 	});
 })
