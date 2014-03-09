@@ -99,21 +99,10 @@ function stopApp() {
     session.stop(onStopAppSuccess, onError);
 }
 
-/**
- * send a message to the receiver using the custom namespace
- * receiver CastMessageBus message handler will be invoked
- * @param {string} message A message string
- */
-function sendMessage(message) {
-    if (session!=null) {
-        session.sendMessage(namespace, message, onSuccess.bind(this, "Message sent: " + message), onError);
-    }
-    else {
-        chrome.cast.requestSession(function(e) {
-            session = e;
-            session.sendMessage(namespace, message, onSuccess.bind(this, "Message sent: " + message), onError);
-          }, onError);
-    }
+function openSession() {
+    chrome.cast.requestSession(function(e) {
+        session = e;
+    }, onError);
 }
 
 /**
@@ -125,22 +114,3 @@ function appendMessage(message) {
     var dw = document.getElementById("debugmessage");
     dw.innerHTML += '<br />' + JSON.stringify(message);
 };
-
-/**
- * utility function to handle text typed in by user in the input field
- */
-function update() {
-    sendMessage({ action : "updateText", text : document.getElementById("input").value });
-}
-
-function newCards() {
-    //sendMessage({ action : "newCards" });
-}
-
-/**
- * handler for the transcribed text from the speech input
- * @param {string} words A transcibed speech string
- */
-function transcribe(words) {
-    sendMessage(words);
-}

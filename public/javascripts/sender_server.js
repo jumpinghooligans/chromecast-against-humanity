@@ -12,6 +12,12 @@ $(document).ready(function() {
 
 	socket.emit("register", player_info);
 
+	$("#openSession").click(openSession);
+
+	$("#textSubmit").click(function() {
+		socket.emit("sender-message", { action : "updateText", text : $("#input").val(), player_info : player_info });
+	});
+
 	$("#examples").click(function() {
 		socket.emit("sender-message", { action : "exampleCards", player_info : player_info });
 	});
