@@ -58,8 +58,26 @@ var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
+var games = {};
+
 io.listen(server).on("connection", function (socket) {
 	//console.log("got a connection from " + util.inspect(socket));
+	socket.on('register', function(data) {
+		console.log("register: " + JSON.stringify(data));
+
+		if(games[data.game] == undefined) {
+			games[data.game] = {};
+
+			games[data.game].players = {};
+			games[data.game].chromecasts = {};
+		}
+		if(data.role == "player") {
+			games[data.game].players[data.id] = socket;
+		} else {
+			games[data.game].chromecasts[data.id] = socket;
+		}
+	});
+
 	socket.on('receiver-message', function(data) {
 		console.log("Received recever message: " + JSON.stringify(data));
 	});
@@ -67,6 +85,13 @@ io.listen(server).on("connection", function (socket) {
 	socket.on('sender-message', function(data) {
 		console.log("Received sender message: " + JSON.stringify(data));
 
-		socket.emit('server-message', data);
+		//from sender to receiver
+		console.log(games);
+
+		var chromecasts = games[data.player_info.game].chromecasts;
+
+		for(var i=0; i<chromecasts.length; i++) {
+			console.log(chromecasts[i]);
+		}
 	});
 })

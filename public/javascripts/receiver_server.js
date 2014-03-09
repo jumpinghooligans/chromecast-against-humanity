@@ -3,10 +3,15 @@ var socket;
 $(document).ready(function() {
 	socket = io.connect('http://chromecast-against-humanity.herokuapp.com/');
 
-	socket.emit('receiver-message', { data : navigator.userAgent });
+	var registration = {};
+
+	registration.game = "example";
+	registration.id = "ryan"
+	registration.role = "chromecast";
+
+	socket.emit('register', registration);
+
 	socket.on('server-message', function(data) {
-		console.log("received server message");
-		console.log(data);
 		if(data.action == "exampleCards") {
 			getExamples(5);
 		}
