@@ -2,5 +2,7 @@ $(document).ready(function() {
 
     var list = $("#list");
 
-    list.owlCarousel();
+    list.owlCarousel({
+        pagination : false
+    });
 });
