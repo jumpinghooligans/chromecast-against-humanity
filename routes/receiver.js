@@ -43,7 +43,7 @@ exports.examples = function (req, res) {
 				examples.push(example_question);
 			}
 
-			res.send(examples);
+			res.json(examples);
 		}
 	}
 }

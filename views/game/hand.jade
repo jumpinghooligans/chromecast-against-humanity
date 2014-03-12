@@ -5,6 +5,7 @@ html
 
 		meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0")
 
+		link(rel='stylesheet', href='/stylesheets/bootstrap.css')
 		link(rel='stylesheet', href='/stylesheets/owl.carousel.css')
 		link(rel='stylesheet', href='/stylesheets/hand.css')
 
@@ -14,17 +15,6 @@ html
 
 	body
 		ul#list
-			li.card.question
-				.text example 1
-			li.card.answer
-				.text example 2
-			li.card.question
-				.text example 3
-			li.card.answer
-				.text example 4
-			li.card.question
-				.text example 5
-			li.card.answer
-				.text example 6
-			li.card.question
-				.text example 7
+			each answer in response.cards
+				li.card.answer
+					.text #{answer.text}

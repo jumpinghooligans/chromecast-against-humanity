@@ -8,6 +8,25 @@ exports.list = function(req, res) {
 
 exports.hand = function(req, res) {
 	var response = {};
+	var count = 10;
 
-	res.render("game/hand", { response : response });
+	var Card = mongoose.model("Card");
+
+	//for example combos
+	var answers = [];
+	var query = Card.find({ cardType : "A" }).limit(count);
+	query.exec(function(err, cards) {
+		answers = cards;
+		complete();
+	});
+
+	var complete = function() {
+		if(answers.length > 0) {
+			console.log(answers);
+
+			response.cards = answers;
+		}
+
+		res.render("game/hand", { response : response });
+	}
 }

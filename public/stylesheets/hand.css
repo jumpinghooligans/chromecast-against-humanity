@@ -23,9 +23,9 @@ body {
   box-shadow: 0 0 15px #555;
 }
 .card .text {
-  font-size: 14pt;
+  font-size: 300%;
+  line-height: 1em;
   padding: 0.5em;
-  height: 275px;
   overflow: auto;
 }
 .card .text span {
