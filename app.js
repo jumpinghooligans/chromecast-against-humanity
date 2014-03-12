@@ -49,6 +49,7 @@ app.get('/cards/import', card.import);
 app.post('/cards/import', card.import);
 
 app.get('/game', game.list);
+app.get('/game/hand', game.hand);
 
 app.get('/receiver', receiver.title);
 app.get('/receiver/examples', receiver.examples);
