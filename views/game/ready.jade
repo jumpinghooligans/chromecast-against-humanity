@@ -1,10 +1,34 @@
 extends ../layout
 
 block content
-	h2 Ready
+	h2 Ready Up
+	hr
+
+	h3 Players
+	if response.game.players.length > 0
+		ul
+			each player in response.game.players
+				li
+					.name #{player.username}
+					if player.username == activeuser.username
+						.status: a(href='readyToggle?to=' + response.readyUrl) #{response.readyText}
+					else
+						.status #{player.status}
+	else
+		p: em No players are connected...
 
 
-	div
+	h3 Chromecasts
+	if response.game.chromecasts.length > 0
+		ul
+			each chromecast in response.game.chromecasts
+				li #{chromecast.username}
+	else
+		p: em No chromecasts are connected...
+
+	p
+		a(href='join') Join Game
+	p
 		input(type='button', value='Open Session', id='openSession', disabled="disabled")
 
 	

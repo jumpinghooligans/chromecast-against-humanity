@@ -45,8 +45,8 @@ if ('development' == app.get('env')) {
 
 app.use(function (req, res, next) {
 	res.locals.activeuser = req.session.activeuser;
-	// res.locals.flasherror = req.flash('error');
-	// console.log(res.locals.flasherror);
+	res.locals.flasherror = req.flash('error');
+	res.locals.flashmsg = req.flash('message');
 	next();
 });
 
@@ -76,10 +76,12 @@ app.get('/cards/import', card.import);
 
 app.post('/cards/import', card.import);
 
-app.get('/game', auth, game.list);
+app.get('/game', game.list);
 app.get('/game/create', auth, game.create);
 app.get('/game/:name', auth, game.redirect);
+app.get('/game/:name/join', auth, game.join);
 app.get('/game/:name/ready', auth, game.ready);
+app.get('/game/:name/readyToggle', auth, game.readyToggle);
 app.get('/game/:name/hand', auth, game.hand);
 app.get('/game/tests', auth, game.tests);
 

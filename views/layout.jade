@@ -27,8 +27,10 @@ html
 					li: a(href="/receiver") Receiver
 				hr
 				#content
-					if flasherror
-						.error #{flasherror}
+					if flasherror.length > 0
+						.error Error: #{flasherror}
+					if flashmsg.length > 0
+						.message Message: #{flashmsg}
 					block content
 
 			#footer

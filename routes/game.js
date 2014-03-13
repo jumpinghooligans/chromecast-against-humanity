@@ -21,8 +21,12 @@ exports.list = function(req, res) {
 }
 
 exports.redirect = function(req, res) {
-
 	var gamename = req.params.name;
+
+	//pass the flash message along
+	if(res.locals.flasherror.length > 0) {
+		req.flash('error', res.locals.flasherror);
+	}
 
 	var Game = mongoose.model("Game");
 	console.log("redirect to game: " + gamename)
@@ -41,14 +45,16 @@ exports.create = function(req, res) {
 	if(req.method == "POST") {
 		var data = req.body;
 		data.creator = req.session.activeuser.username;
+		data.players = [];
+		data.players.push({ username : req.session.activeuser.username });
 
 		var Game = mongoose.model("Game");
 
 		var g = new Game(data);
 		g.save(function(err, game) {
 			if(err) {
-				req.flash('error', err);
-				res.render("game/create", { response : response });
+				req.flash('error', err.err);
+				res.redirect("game/create");
 			} else {
 				res.redirect("game/" + game.name);
 			}
@@ -58,10 +64,74 @@ exports.create = function(req, res) {
 	}
 }
 
-exports.ready = function (req, res) {
-	var response = {};
+exports.join = function(req, res) {
+	var gamename = req.params.name;
 
-	res.render("game/ready", { response : response });
+	var new_player = { username : req.session.activeuser.username };
+
+	var Game = mongoose.model("Game");
+
+	Game.findOne({ name : gamename, players : { $elemMatch : { username : new_player.username } } }, function(err, game) {
+		if(err) {
+			req.flash('error', err.err);
+			res.redirect("game/" + gamename);
+		}
+		if(game) {
+			req.flash('error', "You are already a part of this game.");
+			res.redirect("game/" + gamename);
+		} else {
+			Game.update({ name : gamename }, { $push : { players : new_player } }, function (err, game) {
+				if(err) {
+					req.flash('error', err.err);
+					res.redirect("game/" + gamename);
+				} else {
+					req.flash('message', 'You have successfully joined this game.');
+					res.redirect("game/" + gamename + "/ready");
+				}
+			});
+		}
+	});
+}
+
+exports.ready = function(req, res) {
+	var response = {};
+	var gamename = req.params.name;
+
+	var Game = mongoose.model("Game");
+
+	response.game = {};
+	Game.findOne({ name : gamename }, function(err, game) {
+		if(err) {
+			req.flash("error", err);
+			res.redirect("/game");
+		}
+		if(game) {
+			response.game = game;
+			complete();
+		} else {
+			req.flash("error", "No game with that name found");
+			res.redirect("/game");
+		}
+	});
+
+	var complete = function() {
+
+		for(var i=0; i<response.game.players.length; i++) {
+			if(response.game.players[i].username == req.session.activeuser.username) {
+				response.readyText = (response.game.players[i].status == "not ready") ? "Ready" : "Not Ready";
+				response.readyUrl = (response.game.players[i].status == "not ready") ? "ready" : "notready";
+			}
+		}
+
+		res.render("game/ready", { response : response });
+	}
+}
+
+exports.readyToggle = function(req, res) {
+
+	var to = req.query.to;
+
+	var Game = mongoose.model("Game");
 }
 
 exports.hand = function(req, res) {

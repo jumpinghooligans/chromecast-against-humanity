@@ -11,8 +11,23 @@ mongoose.model("User", userSchema);
 
 var gameSchema = new mongoose.Schema({
 
-	name : { type : String, 'unique' : true },
+	name : { type : String, unique : true },
 	stage : { type : String, default : 'ready' },
+	players : [{
+		username : String,
+		status : { type : String, default : "not ready" },
+		points : { type : Number, default : 0 }
+	}],
+	chromecasts : [{
+		username : String
+	}],
+	rounds : [{
+		picker : String,
+		cards : [{
+			id : String
+		}],
+		winner : String
+	}],
 	creator : String
 
 });

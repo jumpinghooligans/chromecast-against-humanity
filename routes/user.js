@@ -30,9 +30,10 @@ exports.create = function(req, res) {
 		var u = new User(data);
 		u.save(function(err, user) {
 			if(err) {
-				req.flash('error', err);
-				res.render("users/create", { response : response });
+				req.flash('error', err.err);
+				res.redirect("users/create");
 			} else {
+				req.flash('message', "Successfully created user: " + user.username);
 				res.redirect("users/" + user.username);
 			}
 		});
@@ -48,14 +49,20 @@ exports.login = function(req, res) {
 		var data = req.body;
 		var User = mongoose.model("User");
 
-		User.findOne({ username : data.username }, function(err, user) {
+		User.findOne({ username : data.username, password : data.password }, function(err, user) {
 			if(err) {
-				req.flash('error', err);
-				res.render("users/create", { response : response });
-			} else {
+				req.flash('error', err.err);
+				res.redirect("users/login");
+			}
+			if(user) {
 				req.session.activeuser = user;
 				var redirect = (req.query.redirect) ? req.query.redirect : "/";
 				res.redirect(redirect);
+			} else {
+				var redirect = (req.query.redirect) ? req.query.redirect : "/";
+
+				req.flash('error', 'Invalid username or password.');
+				res.redirect("users/login?redirect=" + redirect);
 			}
 		});
 	} else {

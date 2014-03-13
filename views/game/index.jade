@@ -5,4 +5,5 @@ block content
 	ul
 		each game in response.games
 			li: a(href='/game/' + game.name) #{game.name}
+			em Creator: <strong>#{game.creator}</strong>
 	a(href='/game/create') Create Game
