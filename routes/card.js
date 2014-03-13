@@ -26,7 +26,7 @@ exports.list = function(req, res) {
 	var complete = function() {
 		if(response.questions && response.answers && examples.length>0) {
 
-			for(var i=0; i<5; i++) {
+			for(var i=0; i<4; i++) {
 				var example_question = JSON.parse(JSON.stringify(examples[Math.floor(Math.random()*examples.length)]));
 				var example_answer = JSON.parse(JSON.stringify(response.answers[Math.floor(Math.random()*response.answers.length)]));
 
