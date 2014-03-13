@@ -2,11 +2,23 @@
   box-sizing: border-box;
 }
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 a {
   color: #00b7ff;
+}
+#container {
+  width: 800px;
+  margin: 1em auto;
+  padding: 1em;
+  box-shadow: 0 0 10px #ccc;
+  border-radius: 10px;
+}
+#content {
+  padding: 0 1em;
+}
+#user {
+  float: right;
 }
 #nav {
   list-style-type: none;

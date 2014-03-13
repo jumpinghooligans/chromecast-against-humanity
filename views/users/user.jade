@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+	h2= user.username
+	p TBD
+	if activeuser && activeuser.username == user.username
+		a(href='/users/logout') Logout
+		br
+	a(href='/users') Back to list

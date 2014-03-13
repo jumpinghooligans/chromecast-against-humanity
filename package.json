@@ -10,7 +10,8 @@
     "jade": "*",
     "stylus": "*",
     "mongoose": "*",
-    "socket.io": "*"
+    "socket.io": "*",
+    "connect-flash": "*"
   },
   "description": "chromecast-cards-against ========================",
   "main": "app.js",

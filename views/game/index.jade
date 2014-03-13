@@ -1,19 +1,8 @@
 extends ../layout
 
 block content
-	h2 Game
-
-	div
-		input(type='button', value='Open Session', id='openSession')
-		br
-		br
-	div
-		input(type='text', id='input')
-		input(type='button', value='Send', id='textSubmit')
-	div
-		input(type='button', value='Example Cards', id='examples')
-	#debugmessage
-
-	script(type='text/javascript', src='http://www.gstatic.com/cv/js/sender/v1/cast_sender.js')
-	script(type='text/javascript', src='javascripts/sender.js')
-	script(type='text/javascript', src='javascripts/sender_server.js')
+	h2 Games
+	ul
+		each game in response.games
+			li: a(href='/game/' + game.name) #{game.name}
+	a(href='/game/create') Create Game

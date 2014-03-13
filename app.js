@@ -18,6 +18,7 @@ var http = require('http');
 var path = require('path');
 var io = require('socket.io');
 var util = require('util');
+var flash = require('connect-flash');
 
 var app = express();
 
@@ -29,9 +30,9 @@ app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
-app.use(express.cookieParser('your secret here'));
+app.use(express.cookieParser('yo this app is secret'));
 app.use(express.session());
-app.use(app.router);
+app.use(flash());
 app.use(require('stylus').middleware(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -40,16 +41,49 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+//user management
+
+app.use(function (req, res, next) {
+	res.locals.activeuser = req.session.activeuser;
+	// res.locals.flasherror = req.flash('error');
+	// console.log(res.locals.flasherror);
+	next();
+});
+
+var auth = function(req, res, next) {
+	if(req.session.activeuser) {
+		next();
+	} else {
+		res.redirect('users/login?redirect=' + req.url);
+	}
+}
+
+app.use(app.router);
+
 app.get('/', routes.index);
 
 app.get('/users', user.list);
+app.get('/users/create', user.create);
+app.get('/users/login', user.login);
+app.get('/users/logout', user.logout);
+app.get('/users/:username', user.user);
+
+app.post('/users/create', user.create);
+app.post('/users/login', user.login);
 
 app.get('/cards', card.list);
 app.get('/cards/import', card.import);
+
 app.post('/cards/import', card.import);
 
-app.get('/game', game.list);
-app.get('/game/hand', game.hand);
+app.get('/game', auth, game.list);
+app.get('/game/create', auth, game.create);
+app.get('/game/:name', auth, game.redirect);
+app.get('/game/:name/ready', auth, game.ready);
+app.get('/game/:name/hand', auth, game.hand);
+app.get('/game/tests', auth, game.tests);
+
+app.post('/game/create', game.create);
 
 app.get('/receiver', receiver.title);
 app.get('/receiver/examples', receiver.examples);

@@ -10,13 +10,27 @@ html
 		script(type='text/javascript', src='/javascripts/scripts.js')
 
 	body
-		h1 Chromecast Against Humanity
+		#container
+			#header
+				if activeuser
+					#user: a(href='/users/' + activeuser.username) #{activeuser.username}
+				else
+					#user: a(href="/users/login") Login
+				h1 Chromecast Against Humanity
+				hr
+			#body
+				ul#nav
+					li: a(href="/") Home
+					li: a(href="/users") Users
+					li: a(href="/cards") Cards
+					li: a(href="/game") Games
+					li: a(href="/receiver") Receiver
+				hr
+				#content
+					if flasherror
+						.error #{flasherror}
+					block content
 
-		ul#nav
-			li: a(href="/") Home
-			li: a(href="/users") Users
-			li: a(href="/cards") Cards
-			li: a(href="/game") Game
-			li: a(href="/receiver") Receiver
-
-		block content
+			#footer
+				hr
+				div Copyright Ryan Kortmann

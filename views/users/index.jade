@@ -1,5 +1,8 @@
 extends ../layout
 
 block content
-  h2= title
-  p Welcome to #{title}
+	h2 Users
+	ul
+		each user in response.users
+			li: a(href='/users/' + user.username) #{user.username}
+	a(href='/users/create') Create User
