@@ -137,16 +137,42 @@ exports.readyToggle = function(req, res) {
 	Game.findOne({ name : gamename, players : { $elemMatch : { username : req.session.activeuser.username } } },
 	function(err, game) {
 		var allReady = true;
-		for(player in game.players) {
-			if(game.players[player].username == req.session.activeuser.username) {
-				game.players[player].status = (game.players[player].status == "not ready") ? "ready" : "not ready";
+		var total = 0;
+		var saved = false;
+
+		var complete = function() {
+			if((total == game.players.length) && (saved)) {
+				if(allReady) {
+					//check for chromecast too
+					//also make sure theres more than one guy
+					game.stage = "hand";
+					game.save(function(err, game) {
+						res.redirect("/game/" + game.name);
+					});
+				} else {
+					game.stage = "ready";
+					game.save(function(err, game) {
+						res.redirect("/game/" + game.name);
+					});
+				}
+			}
+		}
+
+		for(var i=0; i < game.players.length; i++) {
+			if(game.players[i].username == req.session.activeuser.username) {
+				game.players[i].status = (game.players[i].status == "not ready") ? "ready" : "not ready";
 				game.save(function(err, game) {
-					res.redirect("/game/" + game.name);
+					saved = true;
+					complete();
 				});
 			}
-
-			
+			if(game.players[i].status == "not ready") {
+				allReady = false;
+			}
+			total++;
+			complete();
 		}
+
 	});
 }
 
