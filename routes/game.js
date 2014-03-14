@@ -128,10 +128,26 @@ exports.ready = function(req, res) {
 }
 
 exports.readyToggle = function(req, res) {
-
+	var response = {};
+	var gamename = req.params.name;
 	var to = req.query.to;
 
 	var Game = mongoose.model("Game");
+
+	Game.findOne({ name : gamename, players : { $elemMatch : { username : req.session.activeuser.username } } },
+	function(err, game) {
+		var allReady = true;
+		for(player in game.players) {
+			if(game.players[player].username == req.session.activeuser.username) {
+				game.players[player].status = (game.players[player].status == "not ready") ? "ready" : "not ready";
+				game.save(function(err, game) {
+					res.redirect("/game/" + game.name);
+				});
+			}
+
+			
+		}
+	});
 }
 
 exports.hand = function(req, res) {

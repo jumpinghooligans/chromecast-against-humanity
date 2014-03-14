@@ -33,6 +33,8 @@ exports.create = function(req, res) {
 				req.flash('error', err.err);
 				res.redirect("users/create");
 			} else {
+				req.session.activeuser = user;
+				
 				req.flash('message', "Successfully created user: " + user.username);
 				res.redirect("users/" + user.username);
 			}
