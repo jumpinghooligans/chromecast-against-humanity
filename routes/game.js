@@ -150,7 +150,7 @@ exports.readyToggle = function(req, res) {
 				if(allReady) {
 					//check for chromecast too
 					//also make sure theres more than one guy
-					game.stage = "hand";
+					game.stage = "ready";
 					game.save(function(err, game) {
 						res.redirect("/game/" + game.name);
 					});

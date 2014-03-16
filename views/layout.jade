@@ -16,11 +16,15 @@ html
 					.user: a(href='/users/' + activeuser.username) #{activeuser.username}
 				else
 					.user: a(href="/users/login") Login
-				h1 Chromecast Against Humanity
+				h1: a(href='/') Chromecast Against Humanity
 
 				ul#nav
 					li: a(href="/") Home
-					li: a(href="/users") Users
+					li
+						a(href="/users") Users
+						ul
+							li: a(href="/users/create") Create
+							li: a(href="/users/login") Login
 					li: a(href="/cards") Cards
 					li: a(href="/game") Games
 					li: a(href="/receiver") Receiver

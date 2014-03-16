@@ -2,8 +2,10 @@ extends ../layout
 
 block content
 	h2 Games
-	ul
+	ul#gameList
 		each game in response.games
-			li: a(href='/game/' + game.name) #{game.name}
-			em Creator: <strong>#{game.creator}</strong>
-	a(href='/game/create') Create Game
+			li
+				.creator
+					em Creator: <strong>#{game.creator}</strong>
+				a(href='/game/' + game.name) #{game.name}
+	a(href='/game/create', class='btn btn-default') Create Game

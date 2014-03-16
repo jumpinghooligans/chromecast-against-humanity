@@ -2,12 +2,12 @@ extends ../layout
 
 block content
 	h2 Login
-	form(method='POST')
-		div
-			span Username: 
-			input(type='text', name='username')
-		div
-			span Password: 
-			input(type='password', name='password')
-		div
-			input(type='submit', value='Login')
+	form(method='POST', role='form', style='width:60%;')
+		.form-group
+			label(for='username') Username
+			input(type='text', name='username', class='form-control', id='username')
+		.form-group
+			label(for='password') Password
+			input(type='password', name='password', class='form-control', id='password')
+		a(class='btn btn-danger', href='/users') Cancel
+		input(type='submit', value='Login', class='btn btn-default')

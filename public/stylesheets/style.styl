@@ -14,7 +14,8 @@ a
 	background-color black
 	color white
 	position relative
-	z-index 50
+	box-shadow 0 0 10px #555
+	transition background-color 1s
 	
 	.user
 		float right
@@ -23,16 +24,87 @@ a
 			color white
 	
 	h1
-		margin 0
+		font-size 36pt
+		margin 0.5em 0
 		padding 10px 0
 		font-weight bold
+		
+		a
+			color white
+			
+			&:hover
+				text-decoration none
 	
 	.inner
-		overflow auto
 		width 1024px
 		margin auto
 		padding 1em
 		padding-bottom 0
+		
+		#nav
+			list-style-type none
+			margin 0
+			padding 0
+			
+			>li
+				position relative
+				display inline-block 
+				height 100%
+				
+				a
+					color white
+					display block
+					font-size 18pt
+					padding 0.5em 1em
+					transition background-color 0.25s
+					
+				&:hover
+					a
+						background-color white
+						color black
+						text-decoration none
+						
+				ul
+					display none
+					position absolute
+					width 100%
+					margin 0 
+					padding 0
+					
+					li
+						a
+							font-size 12pt
+						
+					
+				&:hover
+					ul
+						display block
+						
+						li
+							a
+								color white
+								background-color black
+								transition background-color 0.25s
+								
+								&:hover
+									color black
+									background-color white
+						
+					
+
+					
+
+#header.hover
+	// background-color red
+	// color black
+	
+	a
+		// color black
+	.inner
+		#nav
+			li
+				a
+					// color black
 
 #container
 	width 1024px
@@ -45,30 +117,80 @@ a
 
 #content
 	padding 0 1em
-
-#nav
+	
+#userList
 	list-style-type none
-	margin 0
 	padding 0
+	margin 1em 0
 	
 	li
-		display block 
-		float left
-		overflow auto
-		height 100%
+		display block
 		
 		a
-			color white
-			display block
-			background-color black
-			font-size 14pt
-			padding 0.5em 1em
+			display inline-block
+			background-color white
+			color black
+			padding 0.5em
+			margin-bottom 5px
+			font-size 16pt
 			transition background-color 0.25s
 			
 			&:hover
-				background-color white
-				color black
 				text-decoration none
+				color white
+				background-color black
+				
+
+#gameList
+	list-style-type none
+	padding 0
+	margin 1em 0
+	
+	li
+		display block
+		
+		a
+			display inline-block
+			background-color white
+			color black
+			padding 0.5em
+			margin-bottom 5px
+			font-size 16pt
+			transition background-color 0.25s
+			
+			&:hover
+				text-decoration none
+				color white
+				background-color black
+				
+		.creator
+			float right
+			
+#readyList
+	list-style-type none
+	padding 0
+	margin 1em 0
+	
+	li
+		overflow auto
+		background-color white
+		display block
+		transition background-color 0.25s
+		
+		div
+			color black
+			padding 0.5em
+			margin-bottom 5px
+			font-size 16pt
+		
+		&:hover
+			background-color black
+			
+			div
+				color white
+				
+		.status
+			float right
 
 #card-list
 	background-color #eee

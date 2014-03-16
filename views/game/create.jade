@@ -2,11 +2,9 @@ extends ../layout
 
 block content
 	h2 Create
-	if response.error
-		.error #{response.error}
-	form(method='POST')
-		div
-			span Name: 
-			input(type='text', name='name')
-		div
-			input(type='submit', value='Create')
+	form(method='POST', role='form', style='width:60%;')
+		.form-group
+			label(for='name') Game Name
+			input(type='text', name='name', class='form-control', id='name')
+		a(class='btn btn-danger', href='/games') Cancel
+		input(type='submit', value='Create', class='btn btn-default')

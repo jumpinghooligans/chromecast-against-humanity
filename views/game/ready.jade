@@ -6,14 +6,14 @@ block content
 
 	h3 Players
 	if response.game.players.length > 0
-		ul
+		ul#readyList
 			each player in response.game.players
 				li
-					.name #{player.username}
 					if player.username == activeuser.username
-						.status: a(href='readyToggle?to=' + response.readyUrl) #{response.readyText}
+						.status: a(href='readyToggle?to=' + response.readyUrl, class='btn btn-default') #{response.readyText}
 					else
 						.status #{player.status}
+					.name #{player.username}
 	else
 		p: em No players are connected...
 
