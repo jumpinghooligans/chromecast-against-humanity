@@ -22,11 +22,12 @@ var gameSchema = new mongoose.Schema({
 		username : String
 	}],
 	rounds : [{
-		picker : String,
-		cards : [{
-			id : String
-		}],
-		winner : String
+		picker : String, //who chooses the winner
+		winner : String //who actually won
+	}],
+	cards : [{
+		id : String, //what card
+		location : String //players hand or discard
 	}],
 	creator : String
 

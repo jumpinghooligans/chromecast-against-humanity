@@ -4,12 +4,28 @@ body {
   padding: 0;
   margin: 0;
 }
-#list {
+#info {
+  box-shadow: 0 0 15px #555;
+  overflow: auto;
+  padding: 0 1em;
+}
+#info .points {
+  float: right;
+  font-size: 14pt;
+  margin-top: 1em;
+}
+#info .points >span {
+  font-weight: bold;
+}
+#cardsContainer {
+  height: 100%;
+}
+#cards {
   margin: 0;
   padding: 0;
   height: 100%;
 }
-#list div {
+#cards div {
   height: 100%;
 }
 .card {
@@ -17,6 +33,7 @@ body {
   margin: 0 10px;
   top: 5%;
   height: 90%;
+  max-height: 400px;
 /*width 200px
 	height 300px*/
   border-radius: 10px;

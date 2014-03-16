@@ -6,15 +6,21 @@ html
 		meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0")
 
 		link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+		link(rel='stylesheet', href='/stylesheets/bootstrap-theme.css')
 		link(rel='stylesheet', href='/stylesheets/owl.carousel.css')
 		link(rel='stylesheet', href='/stylesheets/hand.css')
 
 		script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
+		script(type='text/javascript', src='/javascripts/bootstrap.js')
 		script(type='text/javascript', src='/javascripts/owl.carousel.js')
 		script(type='text/javascript', src='/javascripts/hand.js')
 
 	body
-		ul#list
-			each answer in response.cards
-				li.card.answer
-					.text #{answer.text}
+		#info
+			.points <span class='curPoints'>4</span> of <span class='victoryPoints'>10</span> points.
+			h3= activeuser.username
+		div#cardsContainer
+			ul#cards
+				each answer in response.cards
+					li.card.answer
+						.text #{answer.text}

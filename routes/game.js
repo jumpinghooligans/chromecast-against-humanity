@@ -31,11 +31,16 @@ exports.redirect = function(req, res) {
 	var Game = mongoose.model("Game");
 	console.log("redirect to game: " + gamename)
 	Game.findOne({ name : gamename }, function(err, game) {
-		complete(game);
+		if(game) {
+			complete(game);
+		} else {
+			req.flash('error', gamename + ' could not be found.');
+			res.redirect("/game");
+		}
 	});
 
 	var complete = function(game) {
-		res.redirect("game/" + game.name + "/" + game.stage);
+		res.redirect("/game/" + game.name + "/" + game.stage);
 	}
 }
 

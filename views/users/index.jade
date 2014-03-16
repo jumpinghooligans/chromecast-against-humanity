@@ -5,4 +5,4 @@ block content
 	ul
 		each user in response.users
 			li: a(href='/users/' + user.username) #{user.username}
-	a(href='/users/create') Create User
+	a(href='/users/create', class='btn btn-primary') Create User
