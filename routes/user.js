@@ -68,7 +68,12 @@ exports.login = function(req, res) {
 			}
 		});
 	} else {
-		res.render("users/login", { response : response });
+		if(req.session.activeuser) {
+			req.flash('message', 'You are already logged in');
+			res.redirect('/users/' + req.session.activeuser.username);
+		} else {
+			res.render("users/login", { response : response });
+		}
 	}
 }
 

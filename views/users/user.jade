@@ -3,7 +3,6 @@ extends ../layout
 block content
 	h2= user.username
 	p TBD
-	if activeuser && activeuser.username == user.username
-		a(href='/users/logout') Logout
-		br
 	a(href='/users', class='btn btn-default') Back to list
+	if activeuser && activeuser.username == user.username
+		a(href='/users/logout', class='btn btn-danger') Logout
