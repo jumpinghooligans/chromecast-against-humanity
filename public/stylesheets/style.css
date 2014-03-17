@@ -81,7 +81,7 @@ a {
   width: 100%;
   margin: 0;
   padding: 0;
-  box-shadow: 0 0 50px #555;
+  box-shadow: 0 0 5px #ccc;
   transition: top 0.2s ease;
 }
 #header .inner #nav >li ul li a {
