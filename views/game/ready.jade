@@ -10,9 +10,9 @@ block content
 			each player in response.game.players
 				li
 					if player.username == activeuser.username
-						.status: a(href='readyToggle?to=' + response.readyUrl, class='btn ' + response.readyClass) #{response.readyText}
+						.status: a(href='readyToggle?to=#{response.readyUrl}', class='btn #{response.readyClass}') #{response.readyText}
 					else
-						.status #{player.status}
+						div(class='status #{response.readyUrl}') #{player.status}
 					.name #{player.username}
 	else
 		p: em No players are connected...

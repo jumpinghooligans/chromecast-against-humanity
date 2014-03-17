@@ -23,12 +23,17 @@ html
 					li
 						a(href="/users") Users
 						ul
+							li: a(href="/users") List
 							li: a(href="/users/create") Create
 							if activeuser
 								li: a(href="/users/logout") Logout
 							else
 								li: a(href="/users/login") Login
-					li: a(href="/cards") Cards
+					li
+						a(href="/cards") Cards
+						ul
+							li: a(href="/cards") List
+							li: a(href="/cards/import") Import
 					li: a(href="/game") Games
 					li: a(href="/receiver") Receiver
 		#container
