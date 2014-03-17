@@ -11,23 +11,30 @@ a
 	margin-right 5px
 
 #header
+	position relative
+	
 	background-color black
 	color white
-	position relative
 	box-shadow 0 0 10px #555
 	transition background-color 1s
-	
+
 	.user
 		float right
+		position relative
+		z-index 51
 		
 		a
 			color white
 	
 	h1
+		background-color black
 		font-size 36pt
-		margin 0.5em 0
-		padding 10px 0
+		margin 0
+		padding 0.5em 0
 		font-weight bold
+		
+		position relative
+		z-index 50
 		
 		a
 			color white
@@ -36,6 +43,7 @@ a
 				text-decoration none
 	
 	.inner
+		background-color black
 		width 1024px
 		margin auto
 		padding 1em
@@ -52,6 +60,10 @@ a
 				height 100%
 				
 				a
+					position relative
+					z-index 50
+					
+					background-color black
 					color white
 					display block
 					font-size 18pt
@@ -65,11 +77,14 @@ a
 						text-decoration none
 						
 				ul
-					display none
+					top -100%
 					position absolute
+					z-index 5
 					width 100%
 					margin 0 
 					padding 0
+					
+					transition top 0.2s ease
 					
 					li
 						a
@@ -77,9 +92,10 @@ a
 						
 					
 				&:hover
+
 					ul
-						display block
-						
+						top 100%
+
 						li
 							a
 								color white
@@ -148,20 +164,25 @@ a
 	
 	li
 		display block
+		background-color white
+		transition background-color 0.25s
+		padding 0.5em
 		
 		a
-			display inline-block
-			background-color white
+			display block
 			color black
-			padding 0.5em
 			margin-bottom 5px
 			font-size 16pt
-			transition background-color 0.25s
 			
-			&:hover
+		&:hover
+			background-color black
+			
+			a
 				text-decoration none
 				color white
-				background-color black
+			
+			.creator
+				color white
 				
 		.creator
 			float right
@@ -175,12 +196,11 @@ a
 		overflow auto
 		background-color white
 		display block
-		transition background-color 0.25s
+		transition background-color 0.2s
 		
 		div
 			color black
 			padding 0.5em
-			margin-bottom 5px
 			font-size 16pt
 		
 		&:hover
@@ -192,6 +212,28 @@ a
 		.status
 			float right
 
+#myChromecast
+	float right
+	
+#chromecastList
+	list-style-type none
+	padding 0
+	margin 1em 0
+	
+	li
+		overflow auto
+		background-color white
+		display block
+		transition background-color 0.25s
+		color black
+		padding 0.5em
+		margin-bottom 5px
+		font-size 16pt
+		
+		&:hover
+			background-color black
+			color white
+	
 #card-list
 	background-color #eee
 	

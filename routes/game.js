@@ -123,8 +123,9 @@ exports.ready = function(req, res) {
 
 		for(var i=0; i<response.game.players.length; i++) {
 			if(response.game.players[i].username == req.session.activeuser.username) {
-				response.readyText = (response.game.players[i].status == "not ready") ? "Ready" : "Not Ready";
+				response.readyText = (response.game.players[i].status == "not ready") ? "Ready up" : "Stop!";
 				response.readyUrl = (response.game.players[i].status == "not ready") ? "ready" : "notready";
+				response.readyClass = (response.game.players[i].status == "not ready") ? "btn-default" : "btn-danger";
 			}
 		}
 

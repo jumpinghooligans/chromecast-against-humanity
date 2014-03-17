@@ -24,7 +24,10 @@ html
 						a(href="/users") Users
 						ul
 							li: a(href="/users/create") Create
-							li: a(href="/users/login") Login
+							if activeuser
+								li: a(href="/users/logout") Logout
+							else
+								li: a(href="/users/login") Login
 					li: a(href="/cards") Cards
 					li: a(href="/game") Games
 					li: a(href="/receiver") Receiver

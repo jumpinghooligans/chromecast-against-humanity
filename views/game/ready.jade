@@ -4,13 +4,13 @@ block content
 	h2 Ready Up
 	hr
 
-	h3 Players
+	h3 <strong>Players</strong>
 	if response.game.players.length > 0
 		ul#readyList
 			each player in response.game.players
 				li
 					if player.username == activeuser.username
-						.status: a(href='readyToggle?to=' + response.readyUrl, class='btn btn-default') #{response.readyText}
+						.status: a(href='readyToggle?to=' + response.readyUrl, class='btn ' + response.readyClass) #{response.readyText}
 					else
 						.status #{player.status}
 					.name #{player.username}
@@ -18,17 +18,17 @@ block content
 		p: em No players are connected...
 
 
-	h3 Chromecasts
-	if response.game.chromecasts.length > 0
-		ul
+	#myChromecast
+		input(type='button', value='No Chromecast found on this Network', id='openSession', disabled="disabled", class='btn btn-default')
+	h3 <strong>Chromecasts</strong>
+	ul#chromecastList
+		if response.game.chromecasts.length > 0
 			each chromecast in response.game.chromecasts
 				li #{chromecast.username}
-	else
-		p: em No chromecasts are connected...
+		else
+			li: em No chromecasts are connected...
 
 	p
-		a(href='join') Join Game
-	p
-		input(type='button', value='Open Session', id='openSession', disabled="disabled")
+		a(href='join', class='btn btn-default') Join Game
 
 	
